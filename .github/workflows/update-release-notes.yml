@@ -1,0 +1,52 @@
+name: update release notes
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to update (e.g. v0.1.0), or leave empty to update all releases with a notes file"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Update release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+
+          update_release() {
+            local tag="$1"
+            local notes_file=".github/releases/${tag}.md"
+            if [ ! -f "$notes_file" ]; then
+              echo "No notes file for ${tag}, skipping."
+              return
+            fi
+            if ! gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+              echo "Release ${tag} does not exist, skipping."
+              return
+            fi
+            echo "Updating release notes for ${tag}..."
+            gh release edit "$tag" --repo "$GITHUB_REPOSITORY" --notes-file "$notes_file"
+            echo "Done: ${tag}"
+          }
+
+          if [ -n "${INPUT_TAG}" ]; then
+            update_release "${INPUT_TAG}"
+          else
+            for notes_file in .github/releases/v*.md; do
+              tag="$(basename "$notes_file" .md)"
+              update_release "$tag"
+            done
+          fi
