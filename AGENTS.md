@@ -14,6 +14,7 @@ bd sync               # Sync with git
 
 ## Releases
 
+- A pushed tag is not a completed release by itself. Every tag meant as a release must result in a GitHub Release for the same tag.
 - Before tagging, write or verify release notes for the exact version being released. Do not rely on GitHub `--generate-notes` alone for direct hotfix tags, because it may produce only a full-changelog link.
 - Release notes must summarize the user-visible change, important bug fixes, and any relevant compatibility or integration impact.
 - After the release workflow finishes, always run `gh release view <tag> --repo sttts/kubectl-doc` and verify the release body is meaningful, not just `Full Changelog`.
