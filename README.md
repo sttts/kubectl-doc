@@ -23,9 +23,7 @@ Install with Homebrew:
 brew install sttts/tap/kubectl-doc
 ```
 
-Krew support is pending in
-[kubernetes-sigs/krew-index#5858](https://github.com/kubernetes-sigs/krew-index/pull/5858).
-When merged into `github.com/kubernetes-sigs/krew-index`:
+Install with Krew:
 
 ```shell
 kubectl krew install doc
