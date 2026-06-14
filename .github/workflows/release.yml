@@ -153,6 +153,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.KREW_INDEX_TOKEN }}
       KREW_INDEX_FORK: sttts/krew-index
+      KREW_INDEX_UPSTREAM: kubernetes-sigs/krew-index
       TAG: ${{ github.ref_name }}
 
     steps:
@@ -229,15 +230,43 @@ jobs:
           git commit -m "plugins/doc: update to ${TAG}"
           git "${git_auth[@]}" push -u origin "$branch"
 
-      # Manual PR step after the branch is pushed:
-      #
-      # fork_owner="${KREW_INDEX_FORK%%/*}"
-      # gh pr create \
-      #   --repo kubernetes-sigs/krew-index \
-      #   --base master \
-      #   --head "${fork_owner}:update-doc-${TAG}" \
-      #   --title "plugins/doc: update to ${TAG}" \
-      #   --body "Update kubectl-doc Krew manifest for ${TAG}."
+      - name: Open Krew index pull request
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "KREW_INDEX_TOKEN secret is not set."
+            exit 1
+          fi
+
+          upstream_manifest="$(mktemp)"
+          gh api "repos/${KREW_INDEX_UPSTREAM}/contents/plugins/doc.yaml" --jq .content | base64 -d > "$upstream_manifest"
+          if cmp -s rendered/doc.yaml "$upstream_manifest"; then
+            echo "Krew manifest for ${TAG} is already current in ${KREW_INDEX_UPSTREAM}."
+            exit 0
+          fi
+
+          branch="update-doc-${TAG}"
+          fork_owner="${KREW_INDEX_FORK%%/*}"
+          head="${fork_owner}:${branch}"
+          existing_pr="$(gh pr list \
+            --repo "${KREW_INDEX_UPSTREAM}" \
+            --search "head:${head}" \
+            --state open \
+            --json url \
+            --jq '.[0].url // ""')"
+
+          if [ -n "$existing_pr" ]; then
+            echo "Krew manifest pull request already exists: ${existing_pr}"
+            exit 0
+          fi
+
+          gh pr create \
+            --repo "${KREW_INDEX_UPSTREAM}" \
+            --base master \
+            --head "$head" \
+            --title "plugins/doc: update to ${TAG}" \
+            --body "Update kubectl-doc Krew manifest for ${TAG}."
 
   update-homebrew-tap:
     needs: publish
