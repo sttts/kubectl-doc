@@ -20,9 +20,9 @@ spec:
           arch: amd64
       {{ addURIAndSha "https://github.com/sttts/kubectl-doc/releases/download/{{ .TagName }}/kubectl-doc-{{ .TagName }}-linux-amd64.tar.gz" .TagName | indent 6 }}
       files:
-        - from: kubectl-doc-{{ .TagName }}-linux-amd64/kubectl-doc
+        - from: kubectl-doc-linux-amd64/kubectl-doc
           to: .
-        - from: kubectl-doc-{{ .TagName }}-linux-amd64/LICENSE
+        - from: kubectl-doc-linux-amd64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -32,9 +32,9 @@ spec:
           arch: arm64
       {{ addURIAndSha "https://github.com/sttts/kubectl-doc/releases/download/{{ .TagName }}/kubectl-doc-{{ .TagName }}-linux-arm64.tar.gz" .TagName | indent 6 }}
       files:
-        - from: kubectl-doc-{{ .TagName }}-linux-arm64/kubectl-doc
+        - from: kubectl-doc-linux-arm64/kubectl-doc
           to: .
-        - from: kubectl-doc-{{ .TagName }}-linux-arm64/LICENSE
+        - from: kubectl-doc-linux-arm64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -44,9 +44,9 @@ spec:
           arch: amd64
       {{ addURIAndSha "https://github.com/sttts/kubectl-doc/releases/download/{{ .TagName }}/kubectl-doc-{{ .TagName }}-darwin-amd64.tar.gz" .TagName | indent 6 }}
       files:
-        - from: kubectl-doc-{{ .TagName }}-darwin-amd64/kubectl-doc
+        - from: kubectl-doc-darwin-amd64/kubectl-doc
           to: .
-        - from: kubectl-doc-{{ .TagName }}-darwin-amd64/LICENSE
+        - from: kubectl-doc-darwin-amd64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -56,9 +56,9 @@ spec:
           arch: arm64
       {{ addURIAndSha "https://github.com/sttts/kubectl-doc/releases/download/{{ .TagName }}/kubectl-doc-{{ .TagName }}-darwin-arm64.tar.gz" .TagName | indent 6 }}
       files:
-        - from: kubectl-doc-{{ .TagName }}-darwin-arm64/kubectl-doc
+        - from: kubectl-doc-darwin-arm64/kubectl-doc
           to: .
-        - from: kubectl-doc-{{ .TagName }}-darwin-arm64/LICENSE
+        - from: kubectl-doc-darwin-arm64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -68,9 +68,9 @@ spec:
           arch: amd64
       {{ addURIAndSha "https://github.com/sttts/kubectl-doc/releases/download/{{ .TagName }}/kubectl-doc-{{ .TagName }}-windows-amd64.zip" .TagName | indent 6 }}
       files:
-        - from: kubectl-doc-{{ .TagName }}-windows-amd64/kubectl-doc.exe
+        - from: kubectl-doc-windows-amd64/kubectl-doc.exe
           to: .
-        - from: kubectl-doc-{{ .TagName }}-windows-amd64/LICENSE
+        - from: kubectl-doc-windows-amd64/LICENSE
           to: .
       bin: kubectl-doc.exe
 
@@ -80,8 +80,8 @@ spec:
           arch: arm64
       {{ addURIAndSha "https://github.com/sttts/kubectl-doc/releases/download/{{ .TagName }}/kubectl-doc-{{ .TagName }}-windows-arm64.zip" .TagName | indent 6 }}
       files:
-        - from: kubectl-doc-{{ .TagName }}-windows-arm64/kubectl-doc.exe
+        - from: kubectl-doc-windows-arm64/kubectl-doc.exe
           to: .
-        - from: kubectl-doc-{{ .TagName }}-windows-arm64/LICENSE
+        - from: kubectl-doc-windows-arm64/LICENSE
           to: .
       bin: kubectl-doc.exe

@@ -24,9 +24,9 @@ spec:
       uri: https://github.com/sttts/kubectl-doc/releases/download/v0.0.0/kubectl-doc-v0.0.0-linux-amd64.tar.gz
       sha256: TODO_LINUX_AMD64_SHA256
       files:
-        - from: kubectl-doc-v0.0.0-linux-amd64/kubectl-doc
+        - from: kubectl-doc-linux-amd64/kubectl-doc
           to: .
-        - from: kubectl-doc-v0.0.0-linux-amd64/LICENSE
+        - from: kubectl-doc-linux-amd64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -37,9 +37,9 @@ spec:
       uri: https://github.com/sttts/kubectl-doc/releases/download/v0.0.0/kubectl-doc-v0.0.0-linux-arm64.tar.gz
       sha256: TODO_LINUX_ARM64_SHA256
       files:
-        - from: kubectl-doc-v0.0.0-linux-arm64/kubectl-doc
+        - from: kubectl-doc-linux-arm64/kubectl-doc
           to: .
-        - from: kubectl-doc-v0.0.0-linux-arm64/LICENSE
+        - from: kubectl-doc-linux-arm64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -50,9 +50,9 @@ spec:
       uri: https://github.com/sttts/kubectl-doc/releases/download/v0.0.0/kubectl-doc-v0.0.0-darwin-amd64.tar.gz
       sha256: TODO_DARWIN_AMD64_SHA256
       files:
-        - from: kubectl-doc-v0.0.0-darwin-amd64/kubectl-doc
+        - from: kubectl-doc-darwin-amd64/kubectl-doc
           to: .
-        - from: kubectl-doc-v0.0.0-darwin-amd64/LICENSE
+        - from: kubectl-doc-darwin-amd64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -63,9 +63,9 @@ spec:
       uri: https://github.com/sttts/kubectl-doc/releases/download/v0.0.0/kubectl-doc-v0.0.0-darwin-arm64.tar.gz
       sha256: TODO_DARWIN_ARM64_SHA256
       files:
-        - from: kubectl-doc-v0.0.0-darwin-arm64/kubectl-doc
+        - from: kubectl-doc-darwin-arm64/kubectl-doc
           to: .
-        - from: kubectl-doc-v0.0.0-darwin-arm64/LICENSE
+        - from: kubectl-doc-darwin-arm64/LICENSE
           to: .
       bin: kubectl-doc
 
@@ -76,9 +76,9 @@ spec:
       uri: https://github.com/sttts/kubectl-doc/releases/download/v0.0.0/kubectl-doc-v0.0.0-windows-amd64.zip
       sha256: TODO_WINDOWS_AMD64_SHA256
       files:
-        - from: kubectl-doc-v0.0.0-windows-amd64/kubectl-doc.exe
+        - from: kubectl-doc-windows-amd64/kubectl-doc.exe
           to: .
-        - from: kubectl-doc-v0.0.0-windows-amd64/LICENSE
+        - from: kubectl-doc-windows-amd64/LICENSE
           to: .
       bin: kubectl-doc.exe
 
@@ -89,8 +89,8 @@ spec:
       uri: https://github.com/sttts/kubectl-doc/releases/download/v0.0.0/kubectl-doc-v0.0.0-windows-arm64.zip
       sha256: TODO_WINDOWS_ARM64_SHA256
       files:
-        - from: kubectl-doc-v0.0.0-windows-arm64/kubectl-doc.exe
+        - from: kubectl-doc-windows-arm64/kubectl-doc.exe
           to: .
-        - from: kubectl-doc-v0.0.0-windows-arm64/LICENSE
+        - from: kubectl-doc-windows-arm64/LICENSE
           to: .
       bin: kubectl-doc.exe

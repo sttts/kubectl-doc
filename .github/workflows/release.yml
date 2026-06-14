@@ -79,8 +79,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          safe_version="${GITHUB_REF_NAME//\//-}"
-          target="kubectl-doc-${safe_version}-${GOOS}-${GOARCH}"
+          target="kubectl-doc-${GOOS}-${GOARCH}"
           binary="kubectl-doc"
           if [ "$GOOS" = "windows" ]; then
             binary="kubectl-doc.exe"
@@ -98,8 +97,8 @@ jobs:
           set -euo pipefail
 
           safe_version="${GITHUB_REF_NAME//\//-}"
-          target="kubectl-doc-${safe_version}-${GOOS}-${GOARCH}"
-          archive="${target}.${{ matrix.archive }}"
+          target="kubectl-doc-${GOOS}-${GOARCH}"
+          archive="kubectl-doc-${safe_version}-${GOOS}-${GOARCH}.${{ matrix.archive }}"
 
           if [ "${{ matrix.archive }}" = "zip" ]; then
             (cd dist && zip -qr "$archive" "$target")
