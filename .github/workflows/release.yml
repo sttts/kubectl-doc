@@ -261,12 +261,13 @@ jobs:
             exit 0
           fi
 
-          gh pr create \
-            --repo "${KREW_INDEX_UPSTREAM}" \
-            --base master \
-            --head "$head" \
-            --title "plugins/doc: update to ${TAG}" \
-            --body "Update kubectl-doc Krew manifest for ${TAG}."
+          pr_url="$(gh api -X POST "repos/${KREW_INDEX_UPSTREAM}/pulls" \
+            -f title="plugins/doc: update to ${TAG}" \
+            -f head="$head" \
+            -f base=master \
+            -f body="Update kubectl-doc Krew manifest for ${TAG}." \
+            --jq .html_url)"
+          echo "Opened Krew manifest pull request: ${pr_url}"
 
   update-homebrew-tap:
     needs: publish
